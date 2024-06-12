@@ -193,12 +193,22 @@ void main() {
     );
   });
 
-  test('Parses ending period', () {
+  test('Parses ending period with a dot', () {
     expectListEqual(
       linkify("https://example.com/test."),
       [
         UrlElement("https://example.com/test", "example.com/test"),
         TextElement(".")
+      ],
+    );
+  });
+
+  test('Parses ending period with closing parentheses', () {
+    expectListEqual(
+      linkify("https://example.com/test)"),
+      [
+        UrlElement("https://example.com/test", "example.com/test"),
+        TextElement(")")
       ],
     );
   });
